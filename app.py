@@ -318,7 +318,7 @@ def render_overview():
     average = round(sum(score_task(task)[0] for task in st.session_state.tasks) / max(total, 1))
 
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Задач в демо-каталоге", total)
+    col1.metric("Всего задач", total)
     col2.metric("Опубликовано", open_tasks)
     col3.metric("Ожидают решения", pending)
     col4.metric("Средняя готовность", str(average) + "/100")
@@ -455,7 +455,10 @@ def render_business():
         )
         save = st.form_submit_button("Сохранить карточку", type="primary")
 
-    if save:
+    if save and not title.strip():
+        st.error("Укажите название задачи.")
+
+    if save and title.strip():
         values = {
             "title": title.strip(),
             "context": context.strip(),
@@ -518,6 +521,10 @@ def render_catalog():
         ]
 
     tasks = sorted(tasks, key=lambda item: score_task(item)[0], reverse=True)
+    if not tasks:
+        st.info("По выбранным фильтрам задач нет. Измените тему или уровень готовности.")
+        return
+
     st.caption("Команда: " + team["name"] + " · Интересы: " + ", ".join(team["interests"]))
     st.caption("Каталог открыт полностью: рекомендации не ограничивают просмотр задач.")
 
@@ -545,6 +552,8 @@ def render_catalog():
     st.divider()
     st.subheader("Отправить предложение")
     options = [task["id"] for task in tasks]
+    if st.session_state.get("proposal_task") not in options:
+        st.session_state["proposal_task"] = options[0]
     selected_task = st.selectbox(
         "Выберите задачу",
         options,
@@ -555,11 +564,11 @@ def render_catalog():
         idea = st.text_area("Идея решения")
         plan = st.text_area("Краткий план работы")
         deadline = st.text_input("Предполагаемый срок")
-        link = st.text_input("Ссылка на прототип или материалы (если есть)")
+        link = st.text_input("Ссылка на прототип или материалы")
         send = st.form_submit_button("Отправить предложение", type="primary")
     if send:
-        if not idea.strip() or not plan.strip() or not deadline.strip():
-            st.error("Заполните идею, план и срок.")
+        if not idea.strip() or not plan.strip() or not deadline.strip() or not link.strip():
+            st.error("Заполните идею, план, срок и ссылку на прототип.")
         else:
             st.session_state.proposals.append({
                 "id": "proposal-" + uuid.uuid4().hex[:8],
