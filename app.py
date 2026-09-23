@@ -509,6 +509,14 @@ def render_catalog():
     if topic != "Все темы":
         tasks = [task for task in tasks if task["industry"] == topic]
 
+    readiness_options = ["Все уровни", "Черновик", "Рабочая", "Готовая", "Приоритетная"]
+    selected_readiness = st.selectbox("Уровень готовности", readiness_options)
+    if selected_readiness != "Все уровни":
+        tasks = [
+            task for task in tasks
+            if readiness_label(score_task(task)[0])[0] == selected_readiness
+        ]
+
     tasks = sorted(tasks, key=lambda item: score_task(item)[0], reverse=True)
     st.caption("Команда: " + team["name"] + " · Интересы: " + ", ".join(team["interests"]))
     st.caption("Каталог открыт полностью: рекомендации не ограничивают просмотр задач.")
