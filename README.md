@@ -13,7 +13,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-На Windows активируйте окружение командой `.venv\\Scripts\\activate`.
+На Windows в PowerShell активируйте окружение командой `.venv\\Scripts\\Activate.ps1`, а в командной строке — `.venv\\Scripts\\activate.bat`.
 
 ## Что есть в MVP
 
