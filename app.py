@@ -1,6 +1,5 @@
 import json
 import uuid
-from datetime import date
 
 import streamlit as st
 
@@ -403,7 +402,8 @@ def render_business():
 
     left, right = st.columns([1, 2])
     with left:
-        st.metric("Рейтинг готовности", str(score) + "/100", label)
+        st.metric("Рейтинг готовности", str(score) + "/100")
+        st.caption("Уровень: " + label)
         st.caption(description)
         st.progress(score / 100)
     with right:
