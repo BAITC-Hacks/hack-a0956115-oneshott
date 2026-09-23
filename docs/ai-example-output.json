@@ -1,0 +1,68 @@
+{
+  "fields": {
+    "title": "Тауар қалдығын бақылау",
+    "context": "",
+    "need": "Дүкендегі тауар есебін автоматтандырғым келеді.",
+    "users": "Екі сатушы және дүкен иесі",
+    "data": "",
+    "constraints": "",
+    "outcome": "",
+    "success": "",
+    "contact": "",
+    "interaction": ""
+  },
+  "questions": [
+    {
+      "field": "data",
+      "question": "Сауда: Командаға қандай деректер, файлдар немесе мысалдар бере аласыз? Форматы мен көлемі қандай?",
+      "kind": "missing"
+    },
+    {
+      "field": "context",
+      "question": "Сауда: Қазір бұл жұмыс қалай орындалады және қандай қиындық бар?",
+      "kind": "missing"
+    },
+    {
+      "field": "constraints",
+      "question": "Сауда: Мерзім, технология, бюджет немесе қолжетімділік бойынша қандай шектеулер бар?",
+      "kind": "missing"
+    },
+    {
+      "field": "outcome",
+      "question": "Сауда: Команда соңында қандай нақты өнімді тапсыруы керек?",
+      "kind": "missing"
+    },
+    {
+      "field": "success",
+      "question": "Сауда: Нәтижені қандай өлшенетін көрсеткішпен қабылдайсыз? Сан мен мақсатты мәнді жазыңыз.",
+      "kind": "missing"
+    },
+    {
+      "field": "contact",
+      "question": "Сауда: Байланыс үшін қандай email немесе телефон көрсетесіз?",
+      "kind": "missing"
+    },
+    {
+      "field": "interaction",
+      "question": "Сауда: Командамен қаншалықты жиі, қай арнада сөйлесесіз және кері байланыс қашан беріледі?",
+      "kind": "missing"
+    }
+  ],
+  "missing": [
+    "context",
+    "data",
+    "constraints",
+    "outcome",
+    "success",
+    "contact",
+    "interaction"
+  ],
+  "evidence": {
+    "need": "description",
+    "title": "answers.title",
+    "users": "answers.users"
+  },
+  "mode": "local_stub",
+  "warning": "",
+  "notice": "Жергілікті AI-демо: ережелік талдау. Сыртқы модель шақырылмайды; фактілер тек сіздің мәтініңізден алынады."
+}
